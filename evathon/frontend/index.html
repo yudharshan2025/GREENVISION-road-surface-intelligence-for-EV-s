@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GreenVision — EV Road-Energy Analytics</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="header">
+    <h1 class="logo">GreenVision</h1>
+    <span class="tagline">EV Road-Energy Analytics Dashboard</span>
+    <div class="status-indicator">
+      <span class="status-dot" id="statusDot"></span>
+      <span id="statusText">Connecting…</span>
+    </div>
+  </header>
+
+  <main class="dashboard">
+    <section class="kpi-grid">
+      <article class="kpi-card" id="kpiRri">
+        <div class="kpi-label">RRI (Road Roughness Index)</div>
+        <div class="kpi-value" id="valueRri">—</div>
+        <div class="kpi-unit">0.0–1.0</div>
+      </article>
+      <article class="kpi-card" id="kpiBsi">
+        <div class="kpi-label">BSI (Battery Stress Index)</div>
+        <div class="kpi-value" id="valueBsi">—</div>
+        <div class="kpi-unit">%</div>
+      </article>
+      <article class="kpi-card" id="kpiRoad">
+        <div class="kpi-label">Road Condition</div>
+        <div class="kpi-value" id="valueRoad">—</div>
+        <div class="kpi-unit">Current</div>
+      </article>
+      <article class="kpi-card" id="kpiBattery">
+        <div class="kpi-label">Battery Status</div>
+        <div class="kpi-value" id="valueBattery">—</div>
+        <div class="kpi-unit">State</div>
+      </article>
+    </section>
+
+    <section class="charts-row">
+      <article class="chart-tile">
+        <h2 class="chart-title">RRI (Rolling)</h2>
+        <div class="chart-wrap">
+          <canvas id="chartRri"></canvas>
+        </div>
+      </article>
+      <article class="chart-tile">
+        <h2 class="chart-title">BSI (Rolling)</h2>
+        <div class="chart-wrap">
+          <canvas id="chartBsi"></canvas>
+        </div>
+      </article>
+    </section>
+
+    <section class="map-section">
+      <article class="map-tile">
+        <div class="map-header">
+          <h2 class="map-title">Route Intelligence</h2>
+          <div class="route-score">
+            <span class="score-label">Route Energy Score</span>
+            <span class="score-value" id="routeEnergyScore">0.00</span>
+          </div>
+        </div>
+        <div id="map" class="map-container"></div>
+        <div class="map-legend">
+          <span class="legend-item legend-green">Smooth (RRI &lt; 0.4)</span>
+          <span class="legend-item legend-yellow">Moderate (0.4–0.6)</span>
+          <span class="legend-item legend-red">Rough (RRI &gt; 0.6)</span>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="map.js"></script>
+  <script src="dashboard.js"></script>
+</body>
+</html>
